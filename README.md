@@ -3,6 +3,8 @@
 ## Overview
 This project demonstrates an airport database management system using a PostgreSQL backend, a Flask API for CRUD operations, and a web-based frontend for data entry and viewing. Additionally, it includes a SQL query tool (`shell.py`) that allows manual SQL query execution for further interaction with the database.
 
+## ER DIAGRAM
+![er_diagram](./images/er_diagram1.png)
 ## DBMS Concepts Demonstrated
 
 ### 1. Relational Database Design
