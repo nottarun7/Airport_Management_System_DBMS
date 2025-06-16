@@ -1,138 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Airport Management System</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Airport Management Dashboard</h1>
+  <h1>Airport Management System</h1>
 
-  <!-- Main navigation between dashboards -->
-  <div class="dashboard-nav">
-    <button onclick="showDashboard('entry')" class="dashboard-btn active" id="entryDashboardBtn">Data Entry</button>
-    <button onclick="showDashboard('view')" class="dashboard-btn" id="viewDashboardBtn">View Data</button>
-  </div>
+  <!-- Passengers -->
+  <section>
+    <h2>Passengers</h2>
+    <form id="passenger-form">
+      <input type="hidden" id="pid">
+      <input type="text" id="pname" placeholder="Name" required>
+      <input type="text" id="ppassport" placeholder="Passport Number" required>
+      <input type="text" id="pnationality" placeholder="Nationality" required>
+      <input type="text" id="pgender" placeholder="Gender" required>
+      <input type="date" id="pdob" required>
+      <button type="submit">Save Passenger</button>
+    </form>
+    <ul id="passenger-list"></ul>
+  </section>
 
-  <!-- DATA ENTRY DASHBOARD -->
-  <div id="entryDashboard" class="dashboard active">
-    <div class="tabs">
-      <button onclick="showTab('passengers-entry')" class="tab-btn active">Passengers</button>
-      <button onclick="showTab('flights-entry')" class="tab-btn">Flights</button>
-      <button onclick="showTab('tickets-entry')" class="tab-btn">Tickets</button>
-    </div>
+  <!-- Flights -->
+  <section>
+    <h2>Flights</h2>
+    <form id="flight-form">
+      <input type="hidden" id="fid">
+      <input type="text" id="fnumber" placeholder="Flight Number" required>
+      <input type="text" id="fsource" placeholder="Source" required>
+      <input type="text" id="fdest" placeholder="Destination" required>
+      <input type="text" id="fdep" placeholder="Departure Time" required>
+      <input type="text" id="farr" placeholder="Arrival Time" required>
+      <button type="submit">Save Flight</button>
+    </form>
+    <ul id="flight-list"></ul>
+  </section>
 
-    <div id="passengers-entry" class="tab-content active">
-      <h2>Add New Passenger</h2>
-      <form id="passengerForm">
-        <input placeholder="Name" name="name" required />
-        <input placeholder="Passport" name="passport" />
-        <input placeholder="Nationality" name="nationality" />
-        <input placeholder="Gender" name="gender" />
-        <input placeholder="DOB" name="dob" type="date" />
-        <button type="submit">Add Passenger</button>
-      </form>
-    </div>
+  <!-- Tickets -->
+  <section>
+    <h2>Tickets</h2>
+    <form id="ticket-form">
+      <input type="hidden" id="tid">
+      <input type="number" id="tpid" placeholder="Passenger ID" required>
+      <input type="number" id="tfid" placeholder="Flight ID" required>
+      <input type="text" id="tseat" placeholder="Seat Number" required>
+      <input type="text" id="tclass" placeholder="Class" required>
+      <input type="number" id="tprice" placeholder="Price" required>
+      <button type="submit">Save Ticket</button>
+    </form>
+    <ul id="ticket-list"></ul>
+  </section>
 
-    <div id="flights-entry" class="tab-content">
-      <h2>Add New Flight</h2>
-      <form id="flightForm">
-        <input placeholder="Airline ID" name="airline_id" required />
-        <input placeholder="Source" name="source" />
-        <input placeholder="Destination" name="destination" />
-        <input placeholder="Departure Time" name="departure_time" type="datetime-local" />
-        <input placeholder="Arrival Time" name="arrival_time" type="datetime-local" />
-        <input placeholder="Status" name="status" />
-        <button type="submit">Add Flight</button>
-      </form>
-    </div>
+  <!-- Baggage -->
+  <section>
+    <h2>Baggage</h2>
+    <form id="baggage-form">
+      <input type="hidden" id="bid">
+      <input type="number" id="bpid" placeholder="Passenger ID" required>
+      <input type="number" id="bweight" placeholder="Weight" required>
+      <input type="text" id="btag" placeholder="Tag ID" required>
+      <button type="submit">Save Baggage</button>
+    </form>
+    <ul id="baggage-list"></ul>
+  </section>
 
-    <div id="tickets-entry" class="tab-content">
-      <h2>Book New Ticket</h2>
-      <form id="ticketForm">
-        <input placeholder="Passenger ID" name="passenger_id" required />
-        <input placeholder="Flight ID" name="flight_id" required />
-        <input placeholder="Seat Number" name="seat_number" />
-        <input placeholder="Class" name="class" />
-        <input placeholder="Price" name="price" type="number" />
-        <input placeholder="Booking Date" name="booking_date" type="date" />
-        <button type="submit">Book Ticket</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- VIEW DATA DASHBOARD -->
-  <div id="viewDashboard" class="dashboard">
-    <div class="tabs">
-      <button onclick="showTab('passengers-view')" class="tab-btn active">Passengers</button>
-      <button onclick="showTab('flights-view')" class="tab-btn">Flights</button>
-      <button onclick="showTab('tickets-view')" class="tab-btn">Tickets</button>
-    </div>
-
-    <div id="passengers-view" class="tab-content active">
-      <h2>Passenger Records</h2>
-      <div class="table-container">
-        <table id="passengerTable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Passport</th>
-              <th>Nationality</th>
-              <th>Gender</th>
-              <th>DOB</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="passengerList"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div id="flights-view" class="tab-content">
-      <h2>Flight Records</h2>
-      <div class="table-container">
-        <table id="flightTable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Airline</th>
-              <th>Source</th>
-              <th>Destination</th>
-              <th>Departure</th>
-              <th>Arrival</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="flightList"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div id="tickets-view" class="tab-content">
-      <h2>Ticket Records</h2>
-      <div class="table-container">
-        <table id="ticketTable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Passenger</th>
-              <th>Flight</th>
-              <th>Seat</th>
-              <th>Class</th>
-              <th>Price</th>
-              <th>Booking Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="ticketList"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <script src="scripts.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

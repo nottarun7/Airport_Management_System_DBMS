@@ -1,0 +1,47 @@
+body {
+  font-family: sans-serif;
+  padding: 30px;
+  background-color: #f5f5f5;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+form {
+  margin-bottom: 15px;
+}
+
+input, button {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+}
+
+button {
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+li button {
+  margin-left: 10px;
+  background-color: #dc3545;
+}
+li button.update {
+  background-color: #ffc107;
+  color: black;
+}
